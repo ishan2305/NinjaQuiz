@@ -1,4 +1,4 @@
-const correctAnswers = ['B', 'B', 'B', 'B'];
+const correctAnswers = ['A', 'B', 'B', 'A'];
 const form = document.querySelector('.quiz-form');
 const result = document.querySelector('.result');
 const span = document.querySelector('span');
@@ -17,9 +17,22 @@ form.addEventListener('submit', e => {
             score += 25;
         }
     }
-
+    scrollTo(0, 0);
     result.classList.remove('d-none');
-    span.textContent = `${score}%`;
+
 
     //console.log(score);
+    let output = 0;
+    const timer = setInterval(
+        () => {
+            span.textContent = `${output}%`;
+            if (output === score) {
+                clearInterval(timer);
+            }
+            else {
+                output++;
+            }
+        }, 20
+    );
+
 });
